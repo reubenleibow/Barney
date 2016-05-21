@@ -18,12 +18,12 @@ public class ObjectLoop : MonoBehaviour
     public List<GameObject> Walkers = new List<GameObject>();
     public int RoadOrderInList = 0;
     public List<GameObject> BagieWorkPlace = new List<GameObject>();
-    public SystemS SystemScript;
+    public SystemBehaviour SystemScript;
 
     // Use this for initialization
     void Start()
     {
-        SystemScript = this.GetComponent<SystemS>();
+        SystemScript = this.GetComponent<SystemBehaviour>();
     }
 
     // Update is called once per frame
@@ -38,10 +38,10 @@ public class ObjectLoop : MonoBehaviour
             {
                 foreach (var parents in Moms)
                 {
-                    if (parents.GetComponent<Bagie_Script>().ChildrenNeeded > 0 && ChildM.GetComponent<Children>().HasMom == false)
+                    if (parents.GetComponent<Person>().ChildrenNeeded > 0 && ChildM.GetComponent<Children>().HasMom == false)
                     {
-                        parents.GetComponent<Bagie_Script>().ChildrenNeeded = parents.GetComponent<Bagie_Script>().ChildrenNeeded - 1;
-                        parents.GetComponent<Bagie_Script>().ChildrenList.Add(ChildM);
+                        parents.GetComponent<Person>().ChildrenNeeded = parents.GetComponent<Person>().ChildrenNeeded - 1;
+                        parents.GetComponent<Person>().ChildrenList.Add(ChildM);
                         ChildM.GetComponent<Children>().HasMom = true;
                         ChildM.GetComponent<Children>().ItsMom = parents;
                         //Must change this line or will imediatly call for children
@@ -58,7 +58,7 @@ public class ObjectLoop : MonoBehaviour
             foreach (var men in Bagie)
             {
                 //for bagies that have no job
-                if (men.GetComponent<Bagie_Script>().GotJob == false)
+                if (men.GetComponent<Person>().GotJob == false)
                 {
                     GoToPlace(men, "SitPlace", "GoToBench");
                 }
@@ -111,7 +111,7 @@ public class ObjectLoop : MonoBehaviour
 
                 foreach (var People in NeedHouses)
                 {
-                    var Adults = People.GetComponent<Bagie_Script>();
+                    var Adults = People.GetComponent<Person>();
 
                     if (HouseScript.MomSpaceTaken == false && Adults.HasHouse == false && Adults.ManType == "Mom")
                     {
@@ -140,9 +140,9 @@ public class ObjectLoop : MonoBehaviour
             foreach (var walker in Walkers)
             {
 
-                if (walker.GetComponent<Bagie_Script>().StartRoadPos == false)
+                if (walker.GetComponent<Person>().StartRoadPos == false)
                 {
-                    newRoadPointNumber = walker.GetComponent<Bagie_Script>().CurrentRoadPoint + 1;
+                    newRoadPointNumber = walker.GetComponent<Person>().CurrentRoadPoint + 1;
 
                     if (newRoadPointNumber >= Roads.Count)
                     {
@@ -150,17 +150,17 @@ public class ObjectLoop : MonoBehaviour
                     }
 
 
-                    walker.GetComponent<Bagie_Script>().RoadPoint = Roads[newRoadPointNumber];
-                    walker.GetComponent<Bagie_Script>().CurrentRoadPoint = newRoadPointNumber;
-                    walker.GetComponent<Bagie_Script>().State = "WalkSpotFound";
+                    walker.GetComponent<Person>().RoadPoint = Roads[newRoadPointNumber];
+                    walker.GetComponent<Person>().CurrentRoadPoint = newRoadPointNumber;
+                    walker.GetComponent<Person>().State = "WalkSpotFound";
                 }
 
-                if (walker.GetComponent<Bagie_Script>().StartRoadPos == true && Roads.Count > walker.GetComponent<Bagie_Script>().StartRoadPosInt)
+                if (walker.GetComponent<Person>().StartRoadPos == true && Roads.Count > walker.GetComponent<Person>().StartRoadPosInt)
                 {
-                    walker.GetComponent<Bagie_Script>().RoadPoint = Roads[walker.GetComponent<Bagie_Script>().StartRoadPosInt];
-                    walker.GetComponent<Bagie_Script>().CurrentRoadPoint = walker.GetComponent<Bagie_Script>().StartRoadPosInt;
-                    walker.GetComponent<Bagie_Script>().State = "WalkSpotFound";
-                    Debug.Log("Setetetete" + walker.GetComponent<Bagie_Script>().StartRoadPosInt);
+                    walker.GetComponent<Person>().RoadPoint = Roads[walker.GetComponent<Person>().StartRoadPosInt];
+                    walker.GetComponent<Person>().CurrentRoadPoint = walker.GetComponent<Person>().StartRoadPosInt;
+                    walker.GetComponent<Person>().State = "WalkSpotFound";
+                    Debug.Log("Setetetete" + walker.GetComponent<Person>().StartRoadPosInt);
                 }
             }
             Walkers.Clear();
@@ -198,10 +198,13 @@ public class ObjectLoop : MonoBehaviour
         }
 
         // go to the bench
-        closest.GetComponent<Objects>().Taken = true;
-        men.GetComponent<NavMeshAgent>().SetDestination(closest.transform.position);
-        men.GetComponent<Bagie_Script>().closestObject = closest;
-        men.GetComponent<Bagie_Script>().GotBench = true;
-        men.GetComponent<Bagie_Script>().State = place;
+        if (closest != null)
+        {
+            closest.GetComponent<Objects>().Taken = true;
+            men.GetComponent<NavMeshAgent>().SetDestination(closest.transform.position);
+            men.GetComponent<Person>().closestObject = closest;
+            men.GetComponent<Person>().GotBench = true;
+            men.GetComponent<Person>().State = place;
+        }
     }
 }

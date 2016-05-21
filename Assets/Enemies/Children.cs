@@ -33,7 +33,7 @@ public class Children : MonoBehaviour
 
     public string State = "Spotted";
 
-    public SystemS SystemScript;
+    public SystemBehaviour SystemScript;
 
     public string TargetType = "Nothing";
 
@@ -46,7 +46,7 @@ public class Children : MonoBehaviour
     {
 
         SYSTEM = GameObject.Find("System");
-        SystemScript = SYSTEM.GetComponent<SystemS>();
+        SystemScript = SYSTEM.GetComponent<SystemBehaviour>();
         ObjectLoopsScript = SYSTEM.GetComponent<ObjectLoop>();
         ObjectLoopsScript.ChildrenM.Add(this.gameObject);
     }
@@ -89,12 +89,12 @@ public class Children : MonoBehaviour
                     TargetAquired = true;
 
                     //find path to the baby barney
-                    if (SYSTEM.GetComponent<SystemS>().Big == false && Terra <= 0 && CarringBarney == false)
+                    if (SYSTEM.GetComponent<SystemBehaviour>().Big == false && Terra <= 0 && CarringBarney == false)
                     {
                         this.GetComponent<NavMeshAgent>().SetDestination(Target.transform.position);
                         TargetType = "SmallBarney";
                     }
-                    if (SYSTEM.GetComponent<SystemS>().Big == true)
+                    if (SYSTEM.GetComponent<SystemBehaviour>().Big == true)
                     {
                         TargetType = "BigBarney";
                         Terra = TERRACONSTANT;
@@ -228,7 +228,7 @@ public class Children : MonoBehaviour
         if (MomDist < 2 && RunToMom == true && AccountedFor == false)
         {
             AccountedFor = true;
-            ItsMom.GetComponent<Bagie_Script>().ChildrenGot = ItsMom.GetComponent<Bagie_Script>().ChildrenGot + 1;
+            ItsMom.GetComponent<Person>().ChildrenGot = ItsMom.GetComponent<Person>().ChildrenGot + 1;
             this.GetComponent<NavMeshAgent>().enabled = false;
             this.GetComponent<NavMeshAgent>().enabled = true;
         }
@@ -245,7 +245,7 @@ public class Children : MonoBehaviour
             Debug.Log("LLLLLL");
             if (ItsMom != null)
             {
-                ItsMom.GetComponent<Bagie_Script>().KidDead(this.gameObject);
+                ItsMom.GetComponent<Person>().KidDead(this.gameObject);
                 ItsMom = null;
             }
         }

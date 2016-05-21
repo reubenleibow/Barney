@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Bagie_Script : MonoBehaviour
+public class Person : MonoBehaviour
 {
     public string NightOrDay = "Day";
     public GameObject WeaponInHand;
@@ -26,13 +26,22 @@ public class Bagie_Script : MonoBehaviour
     public GameObject LastHit;
     public bool AtSpot = false;
 
+    public Testing Tester;
+
+    public enum Testing
+    {
+        One,
+        Two,
+        Three
+    }
+
     // ForMoms
     public bool pickupchildren;
     public GameObject ParkPosition;
     public bool CallChildren = false;
     public int ChildrenGot = 0;
 
-    public SystemS SystemScript;
+    public SystemBehaviour SystemScript;
     public Vector3 ArrivedPoint;
     public int ChildrenNeeded = 2;
     public List<GameObject> ChildrenList = new List<GameObject>();
@@ -74,7 +83,7 @@ public class Bagie_Script : MonoBehaviour
 
         Randomx = Random.Range(0, 2);
         ObjectLoopsScript = SYSTEM.GetComponent<ObjectLoop>();
-        SystemScript = SYSTEM.GetComponent<SystemS>();
+        SystemScript = SYSTEM.GetComponent<SystemBehaviour>();
 
         if (ManType == "Mom" || ManType == "Man")
         {

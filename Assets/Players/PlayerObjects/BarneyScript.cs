@@ -8,7 +8,7 @@ public class BarneyScript : MonoBehaviour
     public bool moving = false;
     public string movingState = "Idle";
     public bool falling = true;
-    public SystemS SystemScript;
+    public SystemBehaviour SystemScript;
     public ObjectLoop ObjectLoopS;
     public float BarneyHealth = 100;
     public float AttackRange = 10;
@@ -34,7 +34,7 @@ public class BarneyScript : MonoBehaviour
     void Start()
     {
 
-        SystemScript = MainSystemS.GetComponent<SystemS>();
+        SystemScript = MainSystemS.GetComponent<SystemBehaviour>();
         ObjectLoopS = MainSystemS.GetComponent<ObjectLoop>();
         HealthLost();
         AddKill();
@@ -43,10 +43,6 @@ public class BarneyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
-
         //Setting size of barney------------------------
         if (SystemScript.Big == true)
         {
@@ -99,22 +95,20 @@ public class BarneyScript : MonoBehaviour
                 chosenMan = hit.collider.gameObject;
                 angle = Vector3.Angle(this.transform.position - chosenMan.transform.position, chosenMan.transform.forward);
                 Debug.Log("chosenMan" + chosenMan);
-                chosenMan.GetComponent<Bagie_Script>().Alive = false;
+                chosenMan.GetComponent<Person>().Alive = false;
                 Debug.Log("Set Tag MAN");
 
-                if (chosenMan.GetComponent<Bagie_Script>().ManType == "Mom" && chosenMan.GetComponent<Bagie_Script>().ChildrenList.Count > 0)
+                if (chosenMan.GetComponent<Person>().ManType == "Mom" && chosenMan.GetComponent<Person>().ChildrenList.Count > 0)
                 {
-                    chosenMan.GetComponent<Bagie_Script>().DeadMom();
+                    chosenMan.GetComponent<Person>().DeadMom();
                 }
-
-
 
                 if (angle > 120)
                 {
                     Debug.Log("Reached");
                     this.GetComponent<Animation>().Play("AttackAnimation0");
                     PlayingAttackAnimation = true;
-                    chosenMan.GetComponent<Bagie_Script>().Stop = true;
+                    chosenMan.GetComponent<Person>().Stop = true;
                     Debug.Log(Kill);
                     Kill = chosenMan;
 
@@ -122,8 +116,8 @@ public class BarneyScript : MonoBehaviour
                 }
                 else
                 {
-                    chosenMan.GetComponent<Bagie_Script>().Health = chosenMan.GetComponent<Bagie_Script>().Health - AttackDamage;
-                    chosenMan.GetComponent<Bagie_Script>().LastHit = this.gameObject;
+                    chosenMan.GetComponent<Person>().Health = chosenMan.GetComponent<Person>().Health - AttackDamage;
+                    chosenMan.GetComponent<Person>().LastHit = this.gameObject;
                 }
             }
 

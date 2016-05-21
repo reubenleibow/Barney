@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class SystemS : MonoBehaviour
+public class SystemBehaviour : MonoBehaviour
 {
     public bool Big = true;
 

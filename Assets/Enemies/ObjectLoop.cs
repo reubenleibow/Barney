@@ -55,43 +55,16 @@ public class ObjectLoop : MonoBehaviour
 
         if (Bagie.Count > 0)
         {
-            GameObject closestObjectX = null;
             foreach (var men in Bagie)
             {
-                var distance = float.MaxValue;
-
                 //for bagies that have no job
                 if (men.GetComponent<Bagie_Script>().GotJob == false)
                 {
-                    foreach (var values in Bench)
-                    {
-                        if (Vector3.Distance(men.transform.position, values.transform.position) < distance && values.GetComponent<Objects>().Taken == false && values.GetComponent<Objects>().Type == "SitPlace")
-                        {
-                            distance = Vector3.Distance(men.transform.position, values.transform.position);
-                            closestObjectX = values;
-                        }
-                    }
-                    men.GetComponent<NavMeshAgent>().SetDestination(closestObjectX.transform.position);
-                    closestObjectX.GetComponent<Objects>().Taken = true;
-                    men.GetComponent<Bagie_Script>().closestObject = closestObjectX;
-                    men.GetComponent<Bagie_Script>().GotBench = true;
-                    men.GetComponent<Bagie_Script>().State = "GoToBench";
+                    GoToPlace(men, "SitPlace", "GoToBench");
                 }
-                if (men.GetComponent<Bagie_Script>().GotJob == true)
+                else
                 {
-                    foreach (var values in Bench)
-                    {
-                        if (Vector3.Distance(men.transform.position, values.transform.position) < distance && values.GetComponent<Objects>().Taken == false && values.GetComponent<Objects>().Type == "WorkPlace")
-                        {
-                            distance = Vector3.Distance(men.transform.position, values.transform.position);
-                            closestObjectX = values;
-                        }
-                    }
-                    men.GetComponent<NavMeshAgent>().SetDestination(closestObjectX.transform.position);
-                    closestObjectX.GetComponent<Objects>().Taken = true;
-                    men.GetComponent<Bagie_Script>().closestObject = closestObjectX;
-                    men.GetComponent<Bagie_Script>().GotBench = true;
-                    men.GetComponent<Bagie_Script>().State = "GoToWork";
+                    GoToPlace(men, "WorkPlace", "GoToWork");
                 }
             }
             Bagie.Clear();
@@ -206,5 +179,29 @@ public class ObjectLoop : MonoBehaviour
             }
         }
         //RoadSorter.Clear();
+    }
+
+    private void GoToPlace(GameObject men, string type, string place)
+    {
+        // find the closest bench
+        var distance = float.MaxValue;
+        GameObject closest = null;
+        foreach (var values in Bench)
+        {
+            if (Vector3.Distance(men.transform.position, values.transform.position) < distance && 
+                values.GetComponent<Objects>().Taken == false && 
+                values.GetComponent<Objects>().Type == type)
+            {
+                distance = Vector3.Distance(men.transform.position, values.transform.position);
+                closest = values;
+            }
+        }
+
+        // go to the bench
+        closest.GetComponent<Objects>().Taken = true;
+        men.GetComponent<NavMeshAgent>().SetDestination(closest.transform.position);
+        men.GetComponent<Bagie_Script>().closestObject = closest;
+        men.GetComponent<Bagie_Script>().GotBench = true;
+        men.GetComponent<Bagie_Script>().State = place;
     }
 }

@@ -1,64 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Children : MonoBehaviour
+public class Children : PersonBase
 {
-    public int Gender = 0;
-    public GameObject Target;
     public float TargetRange = 40;
     public int SightAngle = 60;
-    public float Alert = 0;
-    public int ALERTCONSTANT = 2;
-    public int SPOTTEDCONSTANT = 2;
     public float Spotted = 0;
-    public bool TargetAquired = false;
-    public GameObject SYSTEM;
     public float Terra = 2;
     public int TERRACONSTANT = 2;
     public int RunDistance = 3;
     public bool GotPlayPlace = false;
     public GameObject ClosestPlayPlace;
-    public ObjectLoop ObjectLoopsScript;
-    public float Health = 100;
     public bool CarringBarney = false;
     public GameObject BarneyCarried;
-    public bool ArrivedAtPoint = true;
-    public Vector3 Point;
-
-    //Mom Stuff
-    public bool HasMom = false;
-    public bool RunToMom = false;
-    public GameObject ItsMom;
-    public bool AccountedFor = false;
-
-    public string State = "Spotted";
-
-    public SystemBehaviour SystemScript;
 
     public string TargetType = "Nothing";
 
-    public bool Stop = false;
-
-    public bool Alive = true;
-
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
+        base.Start();
 
-        SYSTEM = GameObject.Find("System");
-        SystemScript = SYSTEM.GetComponent<SystemBehaviour>();
-        ObjectLoopsScript = SYSTEM.GetComponent<ObjectLoop>();
         ObjectLoopsScript.ChildrenM.Add(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //if(Alive == false)
-        //{
-        //	return;
-        //}
 
         var angle = Vector3.Angle(Target.transform.position - this.transform.position, this.transform.forward);
         var targetDistance = Vector3.Distance(this.transform.position, Target.transform.position);
@@ -89,12 +57,12 @@ public class Children : MonoBehaviour
                     TargetAquired = true;
 
                     //find path to the baby barney
-                    if (SYSTEM.GetComponent<SystemBehaviour>().Big == false && Terra <= 0 && CarringBarney == false)
+                    if (SystemScript.Big == false && Terra <= 0 && CarringBarney == false)
                     {
                         this.GetComponent<NavMeshAgent>().SetDestination(Target.transform.position);
                         TargetType = "SmallBarney";
                     }
-                    if (SYSTEM.GetComponent<SystemBehaviour>().Big == true)
+                    if (SystemScript.Big == true)
                     {
                         TargetType = "BigBarney";
                         Terra = TERRACONSTANT;
@@ -121,7 +89,7 @@ public class Children : MonoBehaviour
                 Target.GetComponent<BarneyScript>().carried = true;
                 CarringBarney = true;
                 BarneyCarried = Target;
-                ArrivedAtPoint = true;
+                StartWander();
             }
         }
         // when have baby barney the run around the park
@@ -129,21 +97,14 @@ public class Children : MonoBehaviour
         {
             BarneyCarried.transform.position = this.transform.position;
 
-            if (Alert <= 0 && ArrivedAtPoint == true && RunToMom == false)
+            if (Alert <= 0)
             {
-                Point = new Vector3(Random.Range(SystemScript.ParkXStart, SystemScript.ParkXEnd), 0, Random.Range(SystemScript.ParkZStart, SystemScript.ParkZEnd));
-                this.GetComponent<NavMeshAgent>().SetDestination(Point);
-                ArrivedAtPoint = false;
+                UpdateMovement();
             }
 
             if (BarneyCarried.GetComponent<BarneyScript>().BarneySize == true)
             {
                 CarringBarney = false;
-
-            }
-            if ((this.transform.position.x < Point.x + 2 && this.transform.position.x > Point.x - 2) && (this.transform.position.z < Point.z + 2 && this.transform.position.z > Point.z - 2))
-            {
-                ArrivedAtPoint = true;
             }
         }
 
@@ -167,7 +128,6 @@ public class Children : MonoBehaviour
             if (Spotted > 0)
             {
                 Spotted = Spotted - 1 * Time.deltaTime;
-
             }
 
             if (Alert > 0 && Terra <= 0)
@@ -176,13 +136,18 @@ public class Children : MonoBehaviour
             }
             if (Alert > 0)
             {
-                State = "Spotted";
+                State = PersonState.SpottedPlayer;
             }
             if (Terra > 0)
             {
                 Terra = Terra - 1 * Time.deltaTime;
-                State = "Spotted";
+                State = PersonState.Terror;
             }
+        }
+
+        if(State == PersonState.Terror)
+        {
+            RunInTerror(Target,gameObject);
         }
 
         if (Spotted <= SPOTTEDCONSTANT)
@@ -190,10 +155,10 @@ public class Children : MonoBehaviour
             TargetAquired = false;
         }
 
-        if (Alert <= 0 && State == "Spotted")
+        if (Alert <= 0 && State == PersonState.SpottedPlayer)
         {
             ObjectLoopsScript.ChildrenP.Add(this.gameObject);
-            State = "Nothing";
+            State = PersonState.Nothing;
         }
 
         if (Alert > 0 && GotPlayPlace == true)
@@ -207,64 +172,22 @@ public class Children : MonoBehaviour
             Destroy(gameObject);
         }
 
-
-        if (Stop == true)
+        if(State == PersonState.GoingHome)
         {
-            this.GetComponent<NavMeshAgent>().enabled = false;
-        }
-        else
-        {
-            this.GetComponent<NavMeshAgent>().enabled = true;
+            ToHouse(this.gameObject,ItsHouse, PersonType);
         }
 
-        //When the children are close enough, make mom avialable to move.
-        var MomDist = 0f;
-
-        if (RunToMom == true && ItsMom != null)
+        if(ItsMom != null && ItsHouse == null)
         {
-            MomDist = Vector3.Distance(this.transform.position, ItsMom.transform.position);
-        }
-        //When it is called by there mother, annd now is adjacent from her........
-        if (MomDist < 2 && RunToMom == true && AccountedFor == false)
-        {
-            AccountedFor = true;
-            ItsMom.GetComponent<Person>().ChildrenGot = ItsMom.GetComponent<Person>().ChildrenGot + 1;
-            this.GetComponent<NavMeshAgent>().enabled = false;
-            this.GetComponent<NavMeshAgent>().enabled = true;
+            ItsHouse = ItsMom.GetComponent<Person>().ItsHouse;
         }
 
-        // after children have see there mom, follow her.
-        if (Alert <= 0 && AccountedFor == true && ItsMom != null && this.GetComponent<NavMeshAgent>().enabled == true)
-        {
-            this.GetComponent<NavMeshAgent>().SetDestination(ItsMom.transform.position);
-        }
-
-
-        if (Alive == false)
-        {
-            Debug.Log("LLLLLL");
-            if (ItsMom != null)
-            {
-                ItsMom.GetComponent<Person>().KidDead(this.gameObject);
-                ItsMom = null;
-            }
-        }
+        UpdateMovement();
     }
 
     void ResetPlayPlace()
     {
         ClosestPlayPlace.GetComponent<Objects>().Taken = false;
-    }
-
-    public void RunToMomNow(Vector3 MomPos)
-    {
-        // keep finding path to mom.
-        if (Alert <= 0 && Alive == true)
-        {
-            this.GetComponent<NavMeshAgent>().SetDestination(MomPos);
-            //Debug.Log(MomPos);
-        }
-
     }
 
     public void DeadMommy()

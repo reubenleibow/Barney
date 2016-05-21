@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
 public class ObjectLoop : MonoBehaviour
 {
@@ -42,7 +44,6 @@ public class ObjectLoop : MonoBehaviour
                     {
                         parents.GetComponent<Person>().ChildrenNeeded = parents.GetComponent<Person>().ChildrenNeeded - 1;
                         parents.GetComponent<Person>().ChildrenList.Add(ChildM);
-                        ChildM.GetComponent<Children>().HasMom = true;
                         ChildM.GetComponent<Children>().ItsMom = parents;
                         //Must change this line or will imediatly call for children
                         //parents.GetComponent<Bagie_Script>().CallChildren = true;
@@ -60,11 +61,11 @@ public class ObjectLoop : MonoBehaviour
                 //for bagies that have no job
                 if (men.GetComponent<Person>().GotJob == false)
                 {
-                    GoToPlace(men, "SitPlace", "GoToBench");
+                    GoToPlace(men, "SitPlace", PersonState.GoToBench);
                 }
                 else
                 {
-                    GoToPlace(men, "WorkPlace", "GoToWork");
+                    GoToPlace(men, "WorkPlace", PersonState.GoToWork);
                 }
             }
             Bagie.Clear();
@@ -95,7 +96,7 @@ public class ObjectLoop : MonoBehaviour
                     closestObjectY.GetComponent<Objects>().Taken = true;
                     men.GetComponent<Children>().ClosestPlayPlace = closestObjectY;
                     men.GetComponent<Children>().GotPlayPlace = true;
-                    men.GetComponent<Children>().State = "GoToPlay";
+                    men.GetComponent<Children>().State = PersonState.GoToPlay;
                 }
             }
 
@@ -113,7 +114,7 @@ public class ObjectLoop : MonoBehaviour
                 {
                     var Adults = People.GetComponent<Person>();
 
-                    if (HouseScript.MomSpaceTaken == false && Adults.HasHouse == false && Adults.ManType == "Mom")
+                    if (HouseScript.MomSpaceTaken == false && Adults.HasHouse == false && Adults.ManType == PersonType.Mom)
                     {
                         HouseScript.MomObject = People;
                         Adults.ItsHouse = house;
@@ -121,7 +122,7 @@ public class ObjectLoop : MonoBehaviour
                         HouseScript.MomSpaceTaken = true;
                     }
 
-                    if (HouseScript.ManSpaceTaken == false && Adults.HasHouse == false && Adults.ManType == "Man")
+                    if (HouseScript.ManSpaceTaken == false && Adults.HasHouse == false && Adults.ManType == PersonType.Man)
                     {
                         HouseScript.ManObject = People;
                         Adults.ItsHouse = house;
@@ -152,14 +153,14 @@ public class ObjectLoop : MonoBehaviour
 
                     walker.GetComponent<Person>().RoadPoint = Roads[newRoadPointNumber];
                     walker.GetComponent<Person>().CurrentRoadPoint = newRoadPointNumber;
-                    walker.GetComponent<Person>().State = "WalkSpotFound";
+                    walker.GetComponent<Person>().State = PersonState.WalkSpotFound;
                 }
 
                 if (walker.GetComponent<Person>().StartRoadPos == true && Roads.Count > walker.GetComponent<Person>().StartRoadPosInt)
                 {
                     walker.GetComponent<Person>().RoadPoint = Roads[walker.GetComponent<Person>().StartRoadPosInt];
                     walker.GetComponent<Person>().CurrentRoadPoint = walker.GetComponent<Person>().StartRoadPosInt;
-                    walker.GetComponent<Person>().State = "WalkSpotFound";
+                    walker.GetComponent<Person>().State = PersonState.WalkSpotFound;
                     Debug.Log("Setetetete" + walker.GetComponent<Person>().StartRoadPosInt);
                 }
             }
@@ -181,15 +182,15 @@ public class ObjectLoop : MonoBehaviour
         //RoadSorter.Clear();
     }
 
-    private void GoToPlace(GameObject men, string type, string place)
+    private void GoToPlace(GameObject men, string type, PersonState place)
     {
         // find the closest bench
         var distance = float.MaxValue;
         GameObject closest = null;
         foreach (var values in Bench)
         {
-            if (Vector3.Distance(men.transform.position, values.transform.position) < distance && 
-                values.GetComponent<Objects>().Taken == false && 
+            if (Vector3.Distance(men.transform.position, values.transform.position) < distance &&
+                values.GetComponent<Objects>().Taken == false &&
                 values.GetComponent<Objects>().Type == type)
             {
                 distance = Vector3.Distance(men.transform.position, values.transform.position);
@@ -198,7 +199,7 @@ public class ObjectLoop : MonoBehaviour
         }
 
         // go to the bench
-        if (closest != null)
+        if (closest != null && men.GetComponent<Person>().Stop == false)
         {
             closest.GetComponent<Objects>().Taken = true;
             men.GetComponent<NavMeshAgent>().SetDestination(closest.transform.position);
@@ -206,5 +207,36 @@ public class ObjectLoop : MonoBehaviour
             men.GetComponent<Person>().GotBench = true;
             men.GetComponent<Person>().State = place;
         }
+    }
+
+    public void RemovePerson(GameObject Person, PersonType Type)
+    {
+        if (Type == PersonType.Mom)
+        {
+            Moms.Remove(Person);
+        }
+
+        if (Type == PersonType.Walker)
+        {
+            Walkers.Remove(Person);
+        }
+
+        //if (Type == PersonType.c)
+        // {
+        //     ChildrenM.Remove(Person);
+        // }
+
+        if (Type == PersonType.Bagie)
+        {
+            Bagie.Remove(Person);
+        }
+
+        // if (Type == PersonType.Bagie)
+        // {
+        //     Bagie.Remove(Person);
+        // }
+
+
+
     }
 }

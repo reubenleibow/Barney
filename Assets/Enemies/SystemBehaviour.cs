@@ -29,6 +29,9 @@ public class SystemBehaviour : MonoBehaviour
     public float ParkXStart;
     public float ParkZStart;
 
+    public int EndOfWorldX = 999;
+    public int EndOfWorldZ = 999;
+
     // Use this for initialization
     void Start()
     {

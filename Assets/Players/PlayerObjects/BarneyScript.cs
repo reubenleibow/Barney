@@ -98,7 +98,7 @@ public class BarneyScript : MonoBehaviour
                 chosenMan.GetComponent<Person>().Alive = false;
                 Debug.Log("Set Tag MAN");
 
-                if (chosenMan.GetComponent<Person>().ManType == "Mom" && chosenMan.GetComponent<Person>().ChildrenList.Count > 0)
+                if (chosenMan.GetComponent<Person>().ManType == PersonType.Mom && chosenMan.GetComponent<Person>().ChildrenList.Count > 0)
                 {
                     chosenMan.GetComponent<Person>().DeadMom();
                 }
@@ -126,14 +126,14 @@ public class BarneyScript : MonoBehaviour
                 chosenMan = hit.collider.gameObject;
                 angle = Vector3.Angle(this.transform.position - chosenMan.transform.position, chosenMan.transform.forward);
                 Debug.Log(angle);
-                chosenMan.GetComponent<Children>().Alive = false;
+                chosenMan.GetComponent<Children>().Kill();
                 //Debug.Log("Set Tag");
 
                 if (angle > 120)
                 {
                     this.GetComponent<Animation>().Play("AttackAnimation0");
                     PlayingAttackAnimation = true;
-                    chosenMan.GetComponent<Children>().Stop = true;
+                    chosenMan.GetComponent<Children>().StopMovement();
                     Kill = chosenMan;
                 }
                 else

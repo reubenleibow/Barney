@@ -2,38 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Person : MonoBehaviour
+public class Person : PersonBase
 {
-    public string NightOrDay = "Day";
     public GameObject WeaponInHand;
-    public string State = "Nothing";
     public float Speed = 1.0f;
-    public bool TargetAcquired = false;
-    public GameObject Target;
     public int SightRange = 40;
     private int SPOTDELAY = 3;
     public float SpotMeter = 0;
     public bool Spotted = false;
     private float Randomx = 0;
-    public float Alert = 0;
-    private int ALERTCONSTANT = 2;
     public GameObject closestObject;
-    private ObjectLoop ObjectLoopsScript;
     public bool GotBench = false;
     public bool GotJob = true;
-    public float Health = 100;
-    public bool Stop = false;
+
     public GameObject LastHit;
     public bool AtSpot = false;
-
-    public Testing Tester;
-
-    public enum Testing
-    {
-        One,
-        Two,
-        Three
-    }
 
     // ForMoms
     public bool pickupchildren;
@@ -41,66 +24,56 @@ public class Person : MonoBehaviour
     public bool CallChildren = false;
     public int ChildrenGot = 0;
 
-    public SystemBehaviour SystemScript;
     public Vector3 ArrivedPoint;
     public int ChildrenNeeded = 2;
     public List<GameObject> ChildrenList = new List<GameObject>();
 
     //is player in
     public GameObject RoadPoint;
-    public bool HasHouse = false;
-    public GameObject ItsHouse;
 
     private float AttackRange = 10;
     public int AttackDamage = 10;
 
     public int CurrentRoadPoint = 0;
 
-    public string ManType = "Man";
-
-    public GameObject SYSTEM;
+    public PersonType ManType = PersonType.Man;
 
     public bool StartRoadPos = true;
     public int StartRoadPosInt = 0;
 
     public bool Animations = false;
-    public int TimeToPickChildren = 0;
+    public int TimeToPickChildren = 90;
 
     public bool Alive = true;
 
 
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
-        //if(Alive == false)
-        //{
-        //	return;
-        //}
+        base.Start();
 
         TimeToPickChildren = 90;
 
         SpotMeter = 3;
 
         Randomx = Random.Range(0, 2);
-        ObjectLoopsScript = SYSTEM.GetComponent<ObjectLoop>();
-        SystemScript = SYSTEM.GetComponent<SystemBehaviour>();
 
-        if (ManType == "Mom" || ManType == "Man")
+        if (ManType == PersonType.Mom || ManType == PersonType.Man)
         {
-            SYSTEM.GetComponent<ObjectLoop>().NeedHouses.Add(this.gameObject);
+            ObjectLoopsScript.NeedHouses.Add(this.gameObject);
         }
 
-        if (ManType == "Man")
+        if (ManType == PersonType.Man)
         {
             GotJob = true;
         }
 
-        if (ManType == "Bagie")
+        if (ManType == PersonType.Bagie)
         {
             GotJob = false;
         }
 
-        if (ManType == "Mom")
+        if (ManType == PersonType.Mom)
         {
             GotJob = true;
             ObjectLoopsScript.Moms.Add(this.gameObject);
@@ -114,13 +87,6 @@ public class Person : MonoBehaviour
             this.GetComponent<Animation>()["MWalking0"].speed = 3;
         }
 
-        //if(ManType == "Walker")
-        //{
-        //	this.GetComponent(Bagie_Script).CurrentRoadPoint = StartRoadPosInt;
-        //	this.GetComponent(Bagie_Script).State = "FindingWalkSpot";
-        //	this.GetComponent.<NavMeshAgent>().SetDestination(RoadPoint.transform.position);
-        //	//ArrivedPoint = RoadPoint.transform.position;
-        //}
     }
 
     // Update is called once per frame
@@ -137,13 +103,13 @@ public class Person : MonoBehaviour
         }
 
         //ForMom
-        if (ManType == "Mom")
+        if (ManType == PersonType.Mom)
         {
             DistanceFromPark = Vector3.Distance(this.transform.position, ParkPosition.transform.position);
 
             if (ItsHouse != null)
             {
-                if (ChildrenGot == ChildrenList.Count && State == "GoToHouse")
+                if (ChildrenGot == ChildrenList.Count && State == PersonState.GoToHouse)
                 {
                     //got to her house(origin point must be low or there can't find the piont to travel to(no error given)).
                     this.GetComponent<NavMeshAgent>().enabled = true;
@@ -151,27 +117,20 @@ public class Person : MonoBehaviour
                     //Debug.Log("Goto house");
                 }
 
-                if (State == "GoToHouse" && distanceFromHouse <= 2)
+                if (State == PersonState.GoToHouse && distanceFromHouse <= 2)
                 {
-                    State = "Nothing";
+                    State = PersonState.Nothing;
                 }
             }
         }
 
         //Nocturnal or not Nocturnal
-        if (Randomx == 1)
-        {
-            NightOrDay = "Night";
-        }
-        else
-        {
-            NightOrDay = "Day";
-        }
+        Nocturnal = Randomx == 1;
 
         RaycastHit hit;
         var ray = Physics.Raycast(this.transform.position, Target.transform.position - this.transform.position, out hit);
         //var ObjectHit = hit.transform.gameObject;
-        //when target is aquired
+        //when target is acquired
         if (ray == true)
         {
             if (hit.transform.name == Target.name && targetDistance <= SightRange)
@@ -188,9 +147,9 @@ public class Person : MonoBehaviour
 
                     if (SpotMeter >= SPOTDELAY)
                     {
-                        TargetAcquired = true;
+                        TargetAquired = true;
                         Alert = ALERTCONSTANT;
-                        State = "Spotted";
+                        State = PersonState.SpottedPlayer;
                     }
                 }
             }
@@ -200,7 +159,7 @@ public class Person : MonoBehaviour
         {
             if (hit.transform.name != Target.name || angle > 50 || targetDistance > SightRange)
             {
-                TargetAcquired = false;
+                TargetAquired = false;
                 Debug.DrawRay(this.transform.position, Target.transform.position - this.transform.position, Color.red);
                 Spotted = false;
             }
@@ -218,7 +177,7 @@ public class Person : MonoBehaviour
             }
         }
         //once all spotting things are in order....
-        if (TargetAcquired == true)
+        if (TargetAquired == true)
         {
             if (Vector3.Distance(Target.transform.position, this.transform.position) > AttackRange && Alive == true)
             {
@@ -239,9 +198,9 @@ public class Person : MonoBehaviour
                 Target.GetComponent<BarneyScript>().HealthLost();
             }
         }
-        if (Alert <= 0 && State == "Spotted")
+        if (Alert <= 0 && State == PersonState.SpottedPlayer)
         {
-            State = "Nothing";
+            State = PersonState.Nothing;
         }
 
         // Reset Point
@@ -251,55 +210,54 @@ public class Person : MonoBehaviour
             GotBench = false;
         }
 
-        if (State == "LookForChildren" && GotBench == true)
+        if (State == PersonState.LookForChildren && GotBench == true)
         {
             ResetBench();
             GotBench = false;
         }
 
         //If not in alert and, nothing is pending in state then......
-        if (Alert <= 0 && State == "Nothing" && ManType != "Walker")
+        if (Alert <= 0 && State == PersonState.Nothing && ManType != PersonType.Walker)
         {
             ResetBench();
             ObjectLoopsScript.Bagie.Add(this.gameObject);
-            State = "FindingWorkSpot";
+            State = PersonState.FindingWorkSpot;
         }
         //If this man is a walker and has not spotted anything the continue walking and start pos has been found
         //newRoadWork
-        if (Alert <= 0 && State == "Nothing" && ManType == "Walker")//&& StartRoadPos == false)
+        if (Alert <= 0 && State == PersonState.Nothing && ManType == PersonType.Walker)//&& StartRoadPos == false)
         {
             ObjectLoopsScript.Walkers.Add(this.gameObject);
             //State = "FindingWalkSpot";
             //Debug.Log("Walking called");
         }
-        if (Alert <= 0 && State == "WalkSpotFound" && ManType == "Walker" && Alive == true)
+        if (Alert <= 0 && State == PersonState.WalkSpotFound && ManType == PersonType.Walker && Alive == true)
         {
             this.GetComponent<NavMeshAgent>().SetDestination(RoadPoint.transform.position);
             ArrivedPoint = RoadPoint.transform.position;
         }
         //ForMom
         //Time Setting-----------------------------
-        if (ManType == "Mom" && SystemScript.GlobalTime > TimeToPickChildren && State != "LookForChildren" && ChildrenGot < ChildrenList.Count && Alert <= 0)
+        if (ManType == PersonType.Mom && SystemScript.GlobalTime > TimeToPickChildren && State != PersonState.LookForChildren && ChildrenGot < ChildrenList.Count && Alert <= 0)
         {
-            State = "LookForChildren";
+            State = PersonState.LookForChildren;
             this.GetComponent<NavMeshAgent>().SetDestination(ParkPosition.transform.position);
         }
 
-        if (ManType == "Mom" && SystemScript.GlobalTime > 0 && SystemScript.GlobalTime < TimeToPickChildren && State == "GoToHouse" && Alert <= 0)
+        if (ManType == PersonType.Mom && SystemScript.GlobalTime > 0 && SystemScript.GlobalTime < TimeToPickChildren && State == PersonState.GoToHouse && Alert <= 0)
         {
-            State = "Nothing";
+            State = PersonState.Nothing;
         }
         //140
         //when bagie arrives at the bench
-        if (State == "GoToBench" || State == "GoToWork")
+        if (State == PersonState.GoToBench || State == PersonState.GoToWork)
         {
-
             if (AtSpot == true)
             {
                 this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, closestObject.transform.rotation, 5);
             }
 
-            if (this.GetComponent<NavMeshAgent>().remainingDistance < 1)
+            if (this.Enabled() && this.GetComponent<NavMeshAgent>().remainingDistance < 1)
             {
                 AtSpot = true;
             }
@@ -310,16 +268,16 @@ public class Person : MonoBehaviour
 
             if (this.transform.rotation == closestObject.transform.rotation)
             {
-                State = "PlaySitting";
+                State = PersonState.AtWorkOrBench;
             }
         }
 
         //When the walker arrives at the spot then find a new one.
-        if (State == "WalkSpotFound")
+        if (State == PersonState.WalkSpotFound)
         {
             if ((this.transform.position.x < ArrivedPoint.x + 2 && this.transform.position.x > ArrivedPoint.x - 2) && (this.transform.position.z < ArrivedPoint.z + 2 && this.transform.position.z > ArrivedPoint.z - 2))
             {
-                State = "Nothing";
+                State = PersonState.Nothing;
 
                 if (StartRoadPos == true)
                 {
@@ -335,26 +293,16 @@ public class Person : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Stop == true)
-        {
-            this.GetComponent<NavMeshAgent>().enabled = false;
-            //Debug.Log("stopCalled");
-        }
-
-        if (Stop == false && this.GetComponent<NavMeshAgent>().enabled == false)
-        {
-            this.GetComponent<NavMeshAgent>().enabled = true;
-        }
         //ForMom
         //When the mom is the right distance away from the park. 
-        if (DistanceFromPark < 25 && State == "LookForChildren" && ChildrenGot < ChildrenList.Count)
+        if (DistanceFromPark < 25 && State == PersonState.LookForChildren && ChildrenGot < ChildrenList.Count)
         {
             CallChildren = true;
             Stop = true;
         }
-        if (SystemScript.GlobalTime > TimeToPickChildren && ChildrenGot == ChildrenList.Count && Alert <= 0 && ManType == "Mom")
+        if (SystemScript.GlobalTime > TimeToPickChildren && ChildrenGot == ChildrenList.Count && Alert <= 0 && ManType == PersonType.Mom)
         {
-            State = "GoToHouse";
+            State = PersonState.GoToHouse;
             Stop = false;
         }
         //ForMom
@@ -364,16 +312,44 @@ public class Person : MonoBehaviour
         {
             foreach (var MyChildren in ChildrenList)
             {
-                MyChildren.GetComponent<Children>().RunToMom = true;
-                MyChildren.GetComponent<Children>().RunToMomNow(this.transform.position);
+                MyChildren.GetComponent<Children>().RunToMomNow();
             }
 
             CallChildren = false;
         }
 
-        if (State == "Nothing" && Stop == true)
+        if (State == PersonState.Nothing && Stop == true)
         {
             Stop = false;
+        }
+
+        if (Alert > 0 && State != PersonState.Searching)
+        {
+            StartSearch();
+        }
+        if (Alert <= 0 && State == PersonState.Searching)
+        {
+            CancelMovement();
+        }
+
+        if (State == PersonState.Searching)
+        {
+            InSearch();
+        }
+
+
+        //stop and start the player
+        if (Stop == true)
+        {
+            this.GetComponent<NavMeshAgent>().enabled = false;
+        }
+        else
+        {
+            this.GetComponent<NavMeshAgent>().enabled = true;
+        }
+
+        if(State == PersonState.Sleeping)
+        {
 
         }
     }
@@ -389,7 +365,7 @@ public class Person : MonoBehaviour
 
     public void DeadMom()
     {
-        if (ManType == "Mom" && ChildrenList.Count > 0)
+        if (ManType == PersonType.Mom && ChildrenList.Count > 0)
         {
             foreach (var Kids in ChildrenList)
             {
@@ -400,12 +376,6 @@ public class Person : MonoBehaviour
 
     public void KidDead(GameObject Kid)
     {
-        foreach (var Kids in ChildrenList)
-        {
-            if (Kids == Kid)
-            {
-                ChildrenList.Remove(Kid);
-            }
-        }
+        ChildrenList.Remove(Kid);
     }
 }

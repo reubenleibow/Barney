@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: fc29e51602c11ae479ba1331bc5acb78
+timeCreated: 1462991462
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bottom_neck
+    100002: //RootNode
+    100004: Head
+    100006: Left_Ankle
+    100008: Left_Elbow
+    100010: Left_Fingers
+    100012: Left_Hip
+    100014: Left_Knee
+    100016: Left_MidFoot
+    100018: Left_MidHand
+    100020: Left_Shoulder
+    100022: Left_Toes
+    100024: Left_Wrist
+    100026: LeftArm_1
+    100028: LeftArm_1_MeshPart0
+    100030: LeftArm_1_MeshPart1
+    100032: LeftArm_1_MeshPart2
+    100034: LeftArm_1_MeshPart3
+    100036: MidShoulders
+    100038: Right_Ankle
+    100040: Right_Elbow
+    100042: Right_Fingers
+    100044: Right_Hip
+    100046: Right_Knee
+    100048: Right_MidFoot
+    100050: Right_MidHand
+    100052: Right_Shoulder
+    100054: Right_Toes
+    100056: Right_Wrist
+    100058: Skin
+    100060: Stomach
+    100062: Top_Neck
+    100064: Waist
+    400000: Bottom_neck
+    400002: //RootNode
+    400004: Head
+    400006: Left_Ankle
+    400008: Left_Elbow
+    400010: Left_Fingers
+    400012: Left_Hip
+    400014: Left_Knee
+    400016: Left_MidFoot
+    400018: Left_MidHand
+    400020: Left_Shoulder
+    400022: Left_Toes
+    400024: Left_Wrist
+    400026: LeftArm_1
+    400028: LeftArm_1_MeshPart0
+    400030: LeftArm_1_MeshPart1
+    400032: LeftArm_1_MeshPart2
+    400034: LeftArm_1_MeshPart3
+    400036: MidShoulders
+    400038: Right_Ankle
+    400040: Right_Elbow
+    400042: Right_Fingers
+    400044: Right_Hip
+    400046: Right_Knee
+    400048: Right_MidFoot
+    400050: Right_MidHand
+    400052: Right_Shoulder
+    400054: Right_Toes
+    400056: Right_Wrist
+    400058: Skin
+    400060: Stomach
+    400062: Top_Neck
+    400064: Waist
+    4300000: LeftArm_1_MeshPart0
+    4300002: LeftArm_1_MeshPart1
+    4300004: LeftArm_1_MeshPart2
+    4300006: LeftArm_1_MeshPart3
+    7400000: C4D Animation Take
+    7400002: MWalking0
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: LeftArm_1_MeshPart0
+    13700002: LeftArm_1_MeshPart1
+    13700004: LeftArm_1_MeshPart2
+    13700006: LeftArm_1_MeshPart3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: MWalking0
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: LeftArm_1
+        weight: 1
+      - path: LeftArm_1/LeftArm_1_MeshPart0
+        weight: 1
+      - path: LeftArm_1/LeftArm_1_MeshPart1
+        weight: 1
+      - path: LeftArm_1/LeftArm_1_MeshPart2
+        weight: 1
+      - path: LeftArm_1/LeftArm_1_MeshPart3
+        weight: 1
+      - path: LeftArm_1/Skin
+        weight: 1
+      - path: Waist
+        weight: 1
+      - path: Waist/Left_Hip
+        weight: 1
+      - path: Waist/Left_Hip/Left_Knee
+        weight: 1
+      - path: Waist/Left_Hip/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Waist/Left_Hip/Left_Knee/Left_Ankle/Left_MidFoot
+        weight: 1
+      - path: Waist/Left_Hip/Left_Knee/Left_Ankle/Left_MidFoot/Left_Toes
+        weight: 1
+      - path: Waist/Right_Hip
+        weight: 1
+      - path: Waist/Right_Hip/Right_Knee
+        weight: 1
+      - path: Waist/Right_Hip/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Waist/Right_Hip/Right_Knee/Right_Ankle/Right_MidFoot
+        weight: 1
+      - path: Waist/Right_Hip/Right_Knee/Right_Ankle/Right_MidFoot/Right_Toes
+        weight: 1
+      - path: Waist/Stomach
+        weight: 1
+      - path: Waist/Stomach/MidShoulders
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Bottom_neck
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Bottom_neck/Top_Neck
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Bottom_neck/Top_Neck/Head
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Left_Shoulder
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Left_Shoulder/Left_Elbow/Left_Wrist/Left_MidHand
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Left_Shoulder/Left_Elbow/Left_Wrist/Left_MidHand/Left_Fingers
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Right_Shoulder
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Right_Shoulder/Right_Elbow/Right_Wrist/Right_MidHand
+        weight: 1
+      - path: Waist/Stomach/MidShoulders/Right_Shoulder/Right_Elbow/Right_Wrist/Right_MidHand/Right_Fingers
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

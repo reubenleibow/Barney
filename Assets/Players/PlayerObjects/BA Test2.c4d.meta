@@ -1,0 +1,587 @@
+fileFormatVersion: 2
+guid: 03c8d26f3ab51bd49b29e9fe64170a6e
+timeCreated: 1454856468
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Barney
+    100004: bottomJaw
+    100006: Head
+    100008: Joint_1
+    100010: Joint_1_2
+    100012: Joint_2
+    100014: Joint_3
+    100016: Joint_3_2
+    100018: Joint_5
+    100020: Joint_5_2
+    100022: Joint_5_3
+    100024: Joint_5_4
+    100026: Joint_6
+    100028: LeftLeg
+    100030: Neck
+    100032: RightArm
+    100034: RightHand
+    100036: RightLeg
+    100038: SECTail
+    100040: Skin
+    100042: Sternum
+    100044: Tailend
+    100046: TailStart
+    100048: topJaw
+    100050: LeftArm
+    400000: //RootNode
+    400002: Barney
+    400004: bottomJaw
+    400006: Head
+    400008: Joint_1
+    400010: Joint_1_2
+    400012: Joint_2
+    400014: Joint_3
+    400016: Joint_3_2
+    400018: Joint_5
+    400020: Joint_5_2
+    400022: Joint_5_3
+    400024: Joint_5_4
+    400026: Joint_6
+    400028: LeftLeg
+    400030: Neck
+    400032: RightArm
+    400034: RightHand
+    400036: RightLeg
+    400038: SECTail
+    400040: Skin
+    400042: Sternum
+    400044: Tailend
+    400046: TailStart
+    400048: topJaw
+    400050: LeftArm
+    4300000: Barney
+    7400000: Idle0
+    7400002: Walking0
+    7400004: Walking1
+    7400006: Walking2
+    7400008: Walking3
+    7400010: AttackAnimation0
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Barney
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle0
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barney
+        weight: 1
+      - path: Barney/Skin
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/bottomJaw
+        weight: 1
+      - path: Head/Neck
+        weight: 1
+      - path: Head/Neck/Sternum
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand/Joint_5
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand/Joint_5_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg/Joint_1_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg/Joint_5_4
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6/Tailend
+        weight: 1
+      - path: Head/topJaw
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walking0
+      takeName: C4D Animation Take
+      firstFrame: 60
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barney
+        weight: 1
+      - path: Barney/Skin
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/bottomJaw
+        weight: 1
+      - path: Head/Neck
+        weight: 1
+      - path: Head/Neck/Sternum
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand/Joint_5
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand/Joint_5_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg/Joint_1_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg/Joint_5_4
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6/Tailend
+        weight: 1
+      - path: Head/topJaw
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walking1
+      takeName: C4D Animation Take
+      firstFrame: 120
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barney
+        weight: 1
+      - path: Barney/Skin
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/bottomJaw
+        weight: 1
+      - path: Head/Neck
+        weight: 1
+      - path: Head/Neck/Sternum
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Head/Neck/Sternum/Joint_1/Joint_2/Joint_3_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand/Joint_5
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/RightHand/Joint_5_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg/Joint_1_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg/Joint_5_4
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6/Tailend
+        weight: 1
+      - path: Head/topJaw
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walking2
+      takeName: C4D Animation Take
+      firstFrame: 180
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barney
+        weight: 1
+      - path: Barney/Skin
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/bottomJaw
+        weight: 1
+      - path: Head/Neck
+        weight: 1
+      - path: Head/Neck/Sternum
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand/Joint_5
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand/Joint_5_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2/Joint_3
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2/Joint_3_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg/Joint_1
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg/Joint_5_4
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6/Tailend
+        weight: 1
+      - path: Head/topJaw
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walking3
+      takeName: C4D Animation Take
+      firstFrame: 240
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barney
+        weight: 1
+      - path: Barney/Skin
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/bottomJaw
+        weight: 1
+      - path: Head/Neck
+        weight: 1
+      - path: Head/Neck/Sternum
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand/Joint_5
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand/Joint_5_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2/Joint_3
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2/Joint_3_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg/Joint_1
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg/Joint_5_4
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6/Tailend
+        weight: 1
+      - path: Head/topJaw
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AttackAnimation0
+      takeName: C4D Animation Take
+      firstFrame: 300
+      lastFrame: 360
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Barney
+        weight: 1
+      - path: Barney/Skin
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/bottomJaw
+        weight: 1
+      - path: Head/Neck
+        weight: 1
+      - path: Head/Neck/Sternum
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand/Joint_5
+        weight: 1
+      - path: Head/Neck/Sternum/LeftArm/RightHand/Joint_5_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2/Joint_3
+        weight: 1
+      - path: Head/Neck/Sternum/RightArm/Joint_2/Joint_3_2
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/LeftLeg/Joint_1
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/RightLeg/Joint_5_4
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6
+        weight: 1
+      - path: Head/Neck/Sternum/TailStart/SECTail/Joint_5_3/Joint_6/Tailend
+        weight: 1
+      - path: Head/topJaw
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
